@@ -183,12 +183,10 @@ class Cropper {
 
   clone() {
     const { element, url } = this;
-    let crossOrigin;
+    let { crossOrigin } = element;
     let crossOriginUrl;
 
     if (this.options.checkCrossOrigin && isCrossOriginURL(url)) {
-      ({ crossOrigin } = element);
-
       if (crossOrigin) {
         crossOriginUrl = url;
       } else {
