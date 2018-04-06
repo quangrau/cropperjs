@@ -5,7 +5,7 @@
  * Copyright (c) 2015-2018 Chen Fengyuan
  * Released under the MIT license
  *
- * Date: 2018-03-31T06:49:16.394Z
+ * Date: 2018-04-06T03:15:50.394Z
  */
 
 (function (global, factory) {
@@ -3419,14 +3419,11 @@
       value: function clone() {
         var element = this.element,
             url = this.url;
+        var crossOrigin = element.crossOrigin;
 
-        var crossOrigin = void 0;
         var crossOriginUrl = void 0;
 
         if (this.options.checkCrossOrigin && isCrossOriginURL(url)) {
-          crossOrigin = element.crossOrigin;
-
-
           if (crossOrigin) {
             crossOriginUrl = url;
           } else {
