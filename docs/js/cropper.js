@@ -5,7 +5,7 @@
  * Copyright (c) 2015-2018 Chen Fengyuan
  * Released under the MIT license
  *
- * Date: 2018-04-06T03:15:50.394Z
+ * Date: 2018-04-11T09:35:18.193Z
  */
 
 (function (global, factory) {
@@ -3374,7 +3374,9 @@
 
         // Bust cache when there is a "crossOrigin" property
         if (options.checkCrossOrigin && isCrossOriginURL(url) && element.crossOrigin) {
-          url = addTimestamp(url);
+          // Author: Quang Rau
+          // Remove timestamp in querystring in case url is preSignedURL from S3
+          // url = addTimestamp(url);
         }
 
         xhr.open('get', url);
