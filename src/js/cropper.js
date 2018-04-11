@@ -148,7 +148,9 @@ class Cropper {
 
     // Bust cache when there is a "crossOrigin" property
     if (options.checkCrossOrigin && isCrossOriginURL(url) && element.crossOrigin) {
-      url = addTimestamp(url);
+      // Author: Quang Rau
+      // Remove timestamp in querystring in case url is preSignedURL from S3
+      // url = addTimestamp(url);
     }
 
     xhr.open('get', url);
@@ -242,7 +244,9 @@ class Cropper {
 
     this.sizing = true;
 
-    const IS_SAFARI = WINDOW.navigator && /(Macintosh|iPhone|iPod|iPad).*AppleWebKit/i.test(WINDOW.navigator.userAgent);
+    const IS_SAFARI =
+      WINDOW.navigator &&
+      /(Macintosh|iPhone|iPod|iPad).*AppleWebKit/i.test(WINDOW.navigator.userAgent);
     const done = (naturalWidth, naturalHeight) => {
       assign(this.imageData, {
         naturalWidth,
@@ -278,7 +282,7 @@ class Cropper {
     // iOS Safari will convert the image automatically
     // with its orientation once append it into DOM (#279)
     if (!IS_SAFARI) {
-      sizingImage.style.cssText = (
+      sizingImage.style.cssText =
         'left:0;' +
         'max-height:none!important;' +
         'max-width:none!important;' +
@@ -287,8 +291,7 @@ class Cropper {
         'opacity:0;' +
         'position:absolute;' +
         'top:0;' +
-        'z-index:-1;'
-      );
+        'z-index:-1;';
       body.appendChild(sizingImage);
     }
   }
